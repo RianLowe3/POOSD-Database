@@ -1,0 +1,15 @@
+-- Pick the DB
+USE poos_db;
+
+-- See tables
+SHOW TABLES;
+
+-- See a couple rows
+SELECT * FROM users;
+SELECT * FROM contacts;
+
+-- Example search (user 1, query 'lo', page 1):
+SET @q := '%lo%';
+SELECT id, first_name, last_name, email FROM contacts
+WHERE user_id = 1 AND (first_name LIKE @q OR last_name LIKE @q OR email LIKE @q)
+ORDER BY created_at DESC LIMIT 20 OFFSET 0;
